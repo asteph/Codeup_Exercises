@@ -1,11 +1,11 @@
 <?php 
 
-$i = 0;
+$i = 100;
 
 do{
 	echo "{$i}" . PHP_EOL;
-	$i += 2;
+	$i -= 5;
 
-}while ($i <= 100);
+}while ($i >= -10);
 
 ?>
