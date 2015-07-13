@@ -1,6 +1,6 @@
 <?php
 
- $a = 5;
+ $a = 20;
  $b = 10;
  $c = '10';
 
@@ -50,7 +50,7 @@
  if ($a < $b) {
      echo "$a is less than $b\n";
  }else{
-     echo "$b is greater than or equal to $a\n";   
+     echo "$b is less than or equal to $a\n";   
  }
 
  // Shorten the next 2 statements into an if/else
