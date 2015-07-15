@@ -37,8 +37,8 @@ function numberCheck($a, $b){
 	}
 }
 
-echo add(t, 2) . PHP_EOL;
-echo subtract(v, 2) . PHP_EOL;
+echo add('t', 2) . PHP_EOL;
+echo subtract('v', 2) . PHP_EOL;
 echo multiply($a, $b) . PHP_EOL;
-echo divide($a, r) . PHP_EOL;
+echo divide($a, 'r') . PHP_EOL;
 echo modulus(6, 3) . PHP_EOL;
