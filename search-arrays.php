@@ -26,15 +26,8 @@ if(isFound('Mel', $compare)){
 
 function numberOfMatches($array1, $array2){
 	$matches = 0;
-	if(count($array1) > count($array2)){
-		$arrayBig = $array1;
-		$arrayLittle = $array2;
-	}else{
-		$arrayBig = $array2;
-		$arrayLittle = $array1;
-	}
-	foreach ($arrayBig as $value) {
-		$match = array_search($value, $arrayLittle);
+	foreach ($array1 as $value) {
+		$match = array_search($value, $array2);
 		if($match !== false){
 			$matches++;
 		}
