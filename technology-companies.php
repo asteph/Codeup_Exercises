@@ -54,4 +54,7 @@ foreach ($companies as $company => $people) {
     sort($people);
     $companies[$company] = $people;
 }
+// print_r($companies);
+echo "-----------------" . PHP_EOL;
+arsort($companies);
 print_r($companies);
