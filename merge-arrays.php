@@ -59,4 +59,5 @@ if(isFound('Mel', $compare)){
 
 echo numberOfMatches($names, $compare);
 print_r(combine_arrays($names, $compare));
+print_r($combinedArray);
 ?>
