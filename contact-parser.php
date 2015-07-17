@@ -10,6 +10,7 @@ function parseContacts($filename)
     //turns string into array with str of name/number
     $contentArray = explode(PHP_EOL, $contents);
     //splits up phone number with '-'s
+    //change this to a function that will just work on the number after it is split into array
     foreach($contentArray as $content){
     	$phoneNumber = substr($content, -10);
     	$phoneEnd = substr($phoneNumber, -4);
