@@ -21,6 +21,11 @@ function parseContacts($filename)
     //seperates name and number into array and assigns keys at same time
     foreach($newContentArray as $content){
     	$contacts[] = array_combine ($keys, explode ('|' , $content));
+    	//could also assign keys using 
+    	//$contactsArray[] = array(
+    	// 	'name' => $contacts[0],
+    	// 	'number' => $contacts[1]
+    	// );
     }
 
     fclose($handle);
