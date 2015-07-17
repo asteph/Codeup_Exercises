@@ -2,6 +2,7 @@
 
  // Converts array into list n1, n2, ..., and n3
  function humanizedList($array) {
+ 	sort($array);
  	$lastArrayPosition = count($array) - 1;
     $array[$lastArrayPosition] = 'and ' . $array[$lastArrayPosition];
     $newArray = implode(', ', $array);
