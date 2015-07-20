@@ -9,6 +9,7 @@ function logMessage($logLevel, $message)
 	//read file and parse contacts
     $handle = fopen($filename, 'a');
     fwrite($handle, PHP_EOL . "$log $logLevel: $message");
+    fclose($handle);
 }
 function logInfo($message){
 	logMessage("INFO", $message);
