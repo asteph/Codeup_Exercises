@@ -3,3 +3,11 @@
 2015-07-20 02:54:10pm This is an error message.
 2015-07-20 02:55:41pm This is an info message.
 2015-07-20 02:55:41pm This is an error message.
+2015-07-20 03:07:50pm Here is some more info.
+2015-07-20 03:07:50pm Oh nose, an error!
+2015-07-20 03:13:09pm  INFO Here is some more info.
+2015-07-20 03:13:09pm  ERROR Oh nose, an error!
+2015-07-20 03:13:26pm  INFO: Here is some more info.
+2015-07-20 03:13:26pm  ERROR: Oh nose, an error!
+2015-07-20 03:13:56pm INFO: Here is some more info.
+2015-07-20 03:13:56pm ERROR: Oh nose, an error!
