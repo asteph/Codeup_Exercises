@@ -1,39 +1,35 @@
 <?php
 
-function parseContacts($filename)
+function parseContacts($filename, $name = null, $number = null)
 {
     $contacts = array();
 
     // todo - read file and parse contacts
-    $handle = fopen($filename, 'r');
+    $handle = fopen($filename, 'a');
+    if(isset($name) && isset($number)){
+        fwrite($handle, PHP_EOL . "{$name}|{$number}");
+    }
+    fclose($handle);
+    $handle = fopen($filename, 'r');       
     $contents = trim(fread($handle, filesize($filename)));
     //turns string into array with str of name/number
     $contentArray = explode(PHP_EOL, $contents);
-    //splits up phone number with '-'s
-    //change this to a function that will just work on the number after it is split into array
-    foreach($contentArray as $content){
-    	$phoneNumber = substr($content, -10);
-    	$phoneEnd = substr($phoneNumber, -4);
-    	$phoneMiddle = substr($phoneNumber, -4, 3); 
-    	$phoneBeginning = substr($phoneNumber, -7, 3);
-    	$newContentArray[] = substr_replace ($content , $phoneBeginning . '-' . $phoneMiddle . '-' . $phoneEnd , -10); 	 
+    foreach($contentArray as $contact) {
+        $contactsArray = explode('|', $contact);
+        $contacts[] = array(
+            'name' => $contactsArray[0],
+            'number' => formatNumber($contactsArray[1])
+        );
     }
-    $keys = ["name", "number"];
-    //seperates name and number into array and assigns keys at same time
-    foreach($newContentArray as $content){
-    	$contacts[] = array_combine ($keys, explode ('|' , $content));
-    	//could also assign keys using 
-    	//$contactsArray[] = array(
-    	// 	'name' => $contacts[0],
-    	// 	'number' => $contacts[1]
-    	// );
-    }
-
-    fclose($handle);
-    
+    fclose($handle);    
     return $contacts;
 }
 
-var_dump(parseContacts('contacts.txt'));
+function formatNumber ($number)
+{
+    return '(' . substr($number, 0, 3) . ') ' . substr($number, 3, 3) . '-' . substr($number, 6, 4);
+}
+
+var_dump(parseContacts('contacts.txt', 'John Smith', '505EXPLORE'));
 
 ?>
