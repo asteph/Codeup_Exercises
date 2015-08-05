@@ -1,13 +1,9 @@
 <?php 
 class Rectangle
 {
-	public function __construct($height, $width = null){
+	public function __construct($height, $width){
 		$this->height = $height;
-		if(isset($width)){
-			$this->width = $width;
-		}else{
-			$this->width = $height;
-		}
+		$this->width = $width;
 	}
 	public function area(){
 		return $this->height * $this->width;
