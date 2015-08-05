@@ -14,7 +14,7 @@ class Log{
 	 	if(is_string($prefix)){
 	    $this->filename = trim($prefix) . "-{$date}.log";
 	 	}else{
-	 		die();
+	 		die('ERROR: setFilename() requires a parameter that is a string' . PHP_EOL);
 	 	}
 	}
 	public function getFilename()
