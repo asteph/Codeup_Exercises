@@ -1,16 +1,26 @@
 <?php
 class Log{
-	public $filename;
-	public $handle;
+	protected $filename;
+	protected $handle;
 	public function __construct($prefix = 'log')
 	 {
-		$date = date("Y-m-d");
-		$this->filename = "{$prefix}-{$date}.log";
-		//open filename for appending
-		//pointer assigned to $handle
-	    $this->handle = fopen($this->filename, 'a');
+		$this->setFilename($prefix);
+        //pointer assigned to $handle
+	    $this->handle = fopen($this->getFilename(), 'a');
 	 }
-
+	protected function setFilename($prefix)
+	{
+		$date = date("Y-m-d");
+	 	if(is_string($prefix)){
+	    $this->filename = trim($prefix) . "-{$date}.log";
+	 	}else{
+	 		die();
+	 	}
+	}
+	public function getFilename()
+    {
+        return $this->filename;
+    }
 	public function logMessage($logLevel, $message)
 	{
 		$date = date("Y-m-d");
@@ -26,7 +36,9 @@ class Log{
 	}
 	public function __destruct()
 	{
-	    fclose($this->handle);
+		if(isset($this->handle)){
+		    fclose($this->handle);
+		}
 	}
 }
 ?>
