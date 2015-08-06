@@ -1,4 +1,4 @@
 <?php 
 require_once 'User.php';
-$user = User::find(1);
+$user = User::all();
 var_dump($user);

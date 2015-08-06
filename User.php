@@ -9,7 +9,8 @@ class User extends Model
     public static function find($id)
     {
     	self::dbConnect();
-    	//don't want variables in query statement; placeholders only
+    	//don't want variables in query statement
+    	//placeholders only
     	$query = 'SELECT * FROM users WHERE id = :id';
     	$stmt = self::$dbc->prepare($query);
     	$stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -24,16 +25,58 @@ class User extends Model
         }
         return $instance;
     }
+    // Get all rows from the users table
     public static function all()
     {
+    	//Start by connecting to the DB
+    	self::dbConnect();
+    	$stmt = self::$dbc->query('SELECT * FROM users');
+    	//Assign results to a variable
+    	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    	$instance = null;
+        if ($result) {
+            $instance = new static;
+            $instance->attributes = $result;
+        }
+        return $instance;
 
     }
     public function save()
     {
     	self::dbConnect();
+    	//Ensure attributes array has properties
+    	if($this->attributes){
+    		if(isset($this->attributes['id'])){
+    			$this->update();
+    		}else{
+    			$this->insert();
+    		}
+
+    	}
+    }
+    public function update()
+    {
+
     }
     public function insert()
     {
-
+    	$query = 'INSERT INTO users (first_name, last_name) VALUES (:first_name, :last_name);';
+    	$stmt = self::$dbc->prepare($query);
+    	$stmt->bindValue(':first_name', $this->attributes['first_name'], PDO::PARAM_STR);
+    	$stmt->bindValue(':last_name', $this->attributes['last_name'], PDO::PARAM_STR);
+    	$stmt->execute();
 	}
+	public function delete()
+	{
+		$query = 'DELETE * FROM users WHERE id = :id';
+		$stmt = self::$dbc->prepare($query);
+		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
+		$stmt->execute();
+	}
+
+
 }
+
+
+
