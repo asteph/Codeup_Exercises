@@ -3,6 +3,8 @@ class Model
 {
 	// Array to store key/value data
     private $attributes = [];
+    //protected static property
+    protected static $table = 'table_name';
 
     // Magic setter to populate $data array
     public function __set($name, $value)
@@ -17,4 +19,10 @@ class Model
         }
         return null;
     }
+
+    public static function getTableName() 
+    {
+        return static::$table;
+    }
 }
+
