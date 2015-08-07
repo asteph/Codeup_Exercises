@@ -57,7 +57,12 @@ class User extends Model
     }
     public function update()
     {
-
+        $query = 'UPDATE users SET first_name = :first_name, last_name = :last_name WHERE id = :id;';
+        $stmt = self::$dbc->prepare($query);
+        $stmt->bindValue(':first_name', $this->attributes['first_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':last_name', $this->attributes['last_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':id', $this->attributes['id'], PDO::PARAM_INT);
+        $stmt->execute();
     }
     public function insert()
     {
